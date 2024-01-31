@@ -3,11 +3,18 @@ uuid = "13d56781-5863-4b69-9473-67efb98f6467"
 authors = ["Knut Andreas Meyer and contributors"]
 version = "0.1.0"
 
+[deps]
+Ferrite = "c061ca5d-56c9-439f-9c0e-210fe06d3992"
+FerriteAssembly = "fd21fc07-c509-4fe1-9468-19963fd5935d"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
+Tensors = "48a634ad-e948-5137-8d70-aa71f2a747f4"
+
 [compat]
 julia = "1.8"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 
 [targets]
-test = ["Test"]
+test = ["Test", "LinearAlgebra"]
