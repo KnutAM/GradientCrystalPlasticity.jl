@@ -1,0 +1,13 @@
+name = "GradientCrystalPlasticity"
+uuid = "13d56781-5863-4b69-9473-67efb98f6467"
+authors = ["Knut Andreas Meyer and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1.8"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
