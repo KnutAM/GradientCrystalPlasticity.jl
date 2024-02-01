@@ -4,6 +4,23 @@ using LinearAlgebra, StaticArrays, Tensors
 import GradientCrystalPlasticity as GCP
 import GradientCrystalPlasticity: ⋆
 
+m_test = begin
+    G, K = rand(2)
+    I2 = one(SymmetricTensor{2,2})
+    elastic_stiffness = 2G * (one(SymmetricTensor{4,2}) - I2⊗I2/3) + K*I2⊗I2
+    crystal = GCP.GenericCrystallography(0.0, π/3)
+    GCP.GradCPlast(crystal; 
+        elastic_stiffness, yield_limit=50.0, t_star=0.5, n_exp=2.5,
+        self_hardening=(1+rand())*1e3, cross_hardening=(1+rand())*1e3)    
+end
+
+@testset "overstress" begin
+    for Δγ = [rand(), -rand()]
+        τ_di = GCP.overstress_inverse(m_test, Δγ)
+        @test GCP.overstress(m_test, τ_di) ≈ Δγ
+    end
+end
+
 @testset "SlipSystems" begin
     for CT in (GCP.BCC, GCP.FCC, GCP.BCC12)
         @testset "$CT" begin

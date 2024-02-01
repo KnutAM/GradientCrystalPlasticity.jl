@@ -1,0 +1,1 @@
+macaulay(x) = max(x, zero(x))
