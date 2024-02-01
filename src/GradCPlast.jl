@@ -21,7 +21,7 @@ function GradCPlast(crystal::Crystallography;
     return GradCPlast(elastic_stiffness, ES, DS, HGND, yield_limit, t_star, n_exp)
 end
 
-# eps() required to avoid zero stiffness at τᵈⁱ = 0
+# eps() required to avoid some singularity at τᵈⁱ = 0, to be further investigated...
 overstress(m::GradCPlast, τᵈⁱ) = (sign(τᵈⁱ)/m.t_star) * ((abs(τᵈⁱ)/m.τy)^m.n_exp + eps())
 
 function overstress_inverse(m::GradCPlast, Δγ)
